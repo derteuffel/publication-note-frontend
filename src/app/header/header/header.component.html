@@ -1,0 +1,47 @@
+<nav class="navbar navbar-dark bg-dark mb-5" style="border-bottom-left-radius: 5px; border-bottom-right-radius: 5px;">
+    <a class="navbar-brand" href="/home">Mbanu</a>
+<div  class="row">
+  <div class="navbar-expand mx-1">
+    <div  class="navbar-nav" *ngIf="isAdmin">
+      <a class="nav-item nav-link" routerLink="/comptes/home"><i class="fa fa-user"></i> Comptes</a>
+    </div>
+  </div>
+  <div class="navbar-expand mx-1">
+    <div  class="navbar-nav" *ngIf="isAdmin">
+      <a class="nav-item nav-link" routerLink="/etudiants/home"> <i class="fa fa-users"></i> Etudiants</a>
+    </div>
+  </div>
+  <div class="navbar-expand mx-1">
+    <div  class="navbar-nav" *ngIf="isAdmin || isPayment">
+      <a class="nav-item nav-link" routerLink="/payments/home"> <i class="fa fa-dollar"></i> Paiements</a>
+    </div>
+  </div>
+  <div class="navbar-expand mx-1">
+    <div  class="navbar-nav" *ngIf="isAdmin || isNote">
+      <a class="nav-item nav-link" routerLink="/notes/home"> <i class="fa fa-book"></i> Notes</a>
+    </div>
+  </div>
+  <div class="navbar-expand mx-1">
+    <div  class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/category"> <i class="fa fa-info-circle"></i> Annonces</a>
+    </div>
+  </div>
+  <div class="navbar-expand mx-1">
+    <div  class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/category"> <i class="fa fa-graduation-cap"></i> Laureats</a>
+    </div>
+  </div>
+
+  <div  class="navbar-expand ml-auto navbar-nav">
+    <div   class="navbar-nav">
+      <a class="nav-item nav-link" type="button" (click)="logout()"> <i class="fa fa-sign-out"></i> Deconnexion</a>
+    </div>
+  </div>
+</div>
+
+  <!-- <div class="navbar-expand ml-auto navbar-nav">
+    <div  class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/login"> <i class="fa fa-sign-in"></i> Connexion</a>
+    </div>
+  </div>  --> 
+</nav>

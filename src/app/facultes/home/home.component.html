@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark ">
+    <div class="row text-white text-center">
+        <h2>Ensemble des Facultes de l'institution</h2>
+    </div>
+</div>
+<hr>
+
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+                <h5> <a (click)="reload()" class="btn text-white"><i class="fa fa-refresh"></i>&nbsp;Actualise</a>    Les Facultes</h5>
+                    
+    </div> 
+    <div class="card container-fluid p-3">
+        <div  *ngIf="isListNull">
+            <div class="alert alert-danger text-center">
+                <p> <i class="fa fa-info-circle"></i> Aucune faculte disponible pour cette institution</p>
+            </div>
+            <div class="button">
+                <h4>Ajouter des Facultes</h4>
+                <form [formGroup] = "fileForm" (ngSubmit)="onSubmit()" >
+                    <div>
+                        <label for="file">Ajouter a partir d'un fichier excel</label>
+                      <input id="file" type="file" name="file" (change)="onFileSelect($event)" >
+                    </div>
+                    <button type="submit" class="btn btn-outline-secondary my-1">Charger</button>
+                  </form>
+            </div>
+        </div>
+        <div *ngIf="!isListNull" >
+            <div class="card-body row" >
+                    <div class="col-md-6 col-xl-4 col-sm-12 col-xs-12"  *ngFor="let item of lists">
+                        <a class="card btn btn-outline-secondary my-1" href="/faculties/detail/{{item.id}}" style="border-radius: 10px; ;">
+                            <div class="p-2 m-2">
+                                <div class="card-title text-center">
+                                    <span>Nom :  {{item.name}}</span>
+                                </div>
+                                <div class="card-body text-left">
+                                    <div class="card-text my-1">
+                                        <span> <i class="fa fa-arrow-right text-info"></i>&nbsp;&nbsp;
+                                        Sigle :  {{item.slug}}</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-envelope text-info"></i> &nbsp;&nbsp;Email : {{item.email}}</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-phone text-info"></i> &nbsp;&nbsp;Telephone : {{item.telephone}}</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-map-marker text-info"></i>&nbsp;&nbsp;Adresse physique : {{item.adressePhysique}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

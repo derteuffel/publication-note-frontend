@@ -1,0 +1,63 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark ">
+    <div class="row text-white text-center">
+        <a href="/comptes/home" class="btn btn-default text-white"><i class="fa fa-arrow-left"></i>&nbsp;Retour</a>
+        <h2>Profile du Compte</h2>
+    </div>
+</div>
+<hr>
+<div class="card-text">
+    <table class="table table-bordered table-responsive-md">
+        <tbody>
+            <tr>
+                <td>Nom </td>
+                <td>{{compte.userInfo.name}}</td>
+            </tr>
+            <tr>
+                <td>Prenom </td>
+                <td>{{compte.userInfo.firstName}}</td>
+            </tr>
+            <tr>
+                <td>Postnom </td>
+                <td>{{compte.userInfo.lastName}}</td>
+            </tr>
+            <tr>
+                <td>Date de naissance </td>
+                <td>{{compte.userInfo.birthDate}}</td>
+            </tr>
+            <tr>
+                <td>Sexe </td>
+                <td>{{compte.userInfo.sexe}}</td>
+            </tr>
+            <tr>
+                <td>Email </td>
+                <td>{{compte.userInfo.email}}</td>
+            </tr>
+            <tr>
+                <td>Telephone </td>
+                <td>{{compte.userInfo.telephone}}</td>
+            </tr>
+            <tr>
+                <td>Adresse Physique </td>
+                <td>{{compte.userInfo.adressePhysique}}</td>
+            </tr>
+            <tr>
+                <td>Numer de carte electeur </td>
+                <td>{{compte.userInfo.numIdentite}}</td>
+            </tr>
+            <tr>
+                <td>Institution </td>
+                <td>{{compte.userInfo.institution}}</td>
+            </tr>
+            <tr>
+                <td>Niveau</td>
+                <td>{{compte.userInfo.niveau}}</td>
+            </tr>
+            <tr>
+                <td>Matricule </td>
+                <td>{{compte.userInfo.matricule}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark text-white text-center">
+    <h2>Gestion des Etudiants</h2>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xl-6 col-sm-12  col-xs-12">
+        <input type="text" class="form-control" [(ngModel)]="searchItem">
+    </div>
+    <div class="col-md-6 col-xl-1 col-xs-12 col-sm-12 my-2">
+        <i class="fa fa-search"></i>
+    </div>
+</div>
+<hr>
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+        <h5>Liste des etudiants</h5>
+    </div> 
+    <table class="table table-bordered table-responsive-md">
+        <thead class="bg-dark text-white">
+            <th>Nom Complet</th>
+            <th>Email</th>
+            <th>Matricule</th>
+            <th>Date de naissance</th>
+            <th>Sexe</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of lists | filter:searchItem | paginate: {itemsPerPage: 10, currentPage: p}">
+                <td>{{item.name+' '+item.lastName+' '+item.firstName}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.matricule}}</td>
+                <td>
+                    {{item.birthDate}}
+                </td>
+                <th>{{item.sexe}}</th>
+                
+                <td>
+                    <a href="/etudiants/detail/{{item.id}}"  class="btn text-success" ><i class="fa fa-eye"></i></a>
+                    <a href="/etudiants/update/{{item.id}}" class="btn text-primary" ><i class="fa fa-pencil"></i></a>
+                    <a type="button" (click)="delete(item.id)" class="btn text-danger"><i class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

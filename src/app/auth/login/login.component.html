@@ -1,0 +1,46 @@
+<div class="card mx-5 my-4" style="border-radius: 15px;">
+<div class="col-12 mb-5 d-flex justify-content-center">
+    <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner> -->
+    <div class="container-fluid my-4" style="width: 50%; ">
+    
+        <div class="text-center">
+            <h1>Mbanu</h1>
+        </div>
+        <div class="alert alert-secondary bg-dark text-white text-center px-2">
+            <h2>Page de Connexion</h2>
+        </div>
+        <div class="card px-2 py-4">     
+        <form name="form" (ngSubmit) = "f.form.valid && onSubmit()" #f="ngForm">
+        <div class="form-group" >
+            <label for="username" >Nom d'utilisateur</label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+            [(ngModel)]="form.username" name="username" #username="ngModel"
+                type="text"/>
+                <div *ngIf="f.submitted && username.invalid">
+                    <div *ngIf="username.errors.required">Entrer un nom d'utilidateur</div>
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+            name="password" #password="ngModel" [(ngModel)]="form.password" id="password"
+                type="password"/>
+                <div *ngIf="f.submitted && password.invalid">
+                    <div *ngIf="password.errors.required">Vous devez entrer un mot de passe</div>
+                    <div *ngIf="password.errors.minlength">Votre mot de passe doit contenir au moins 6 caracteres</div>
+                </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Connexion</button>
+            
+        </div>
+    
+        <div *ngIf="f.submitted && isLoginFailed" class="form-group alert alert-danger">
+            Echec connexion: {{errorMessage}}
+        </div>
+                </form>
+        </div>
+    </div>
+  
+  </div>
+</div>

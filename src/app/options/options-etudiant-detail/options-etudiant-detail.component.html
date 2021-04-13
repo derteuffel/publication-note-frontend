@@ -1,0 +1,100 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark ">
+    <div class="row text-white text-center">
+        <a href="/options/detail/{{etudiant.options.id}}" class="btn btn-default text-white"><i class="fa fa-arrow-left"></i>&nbsp;Retour</a>
+        <h2>Detail d'un etudiant</h2>
+        <a href="/options/etudiants/update/{{etudiant.id}}" class="btn btn-default text-white"><i class="fa fa-pencil"></i>&nbsp;Modifier</a>
+        <a type="button" (click)="delete()" class="btn btn-default text-white"> <i class="fa fa-trash"></i>&nbsp;Supprimer</a>
+    </div>
+</div>
+<hr>
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+        <h5>Detail intentification de l'etudiant</h5>
+    </div> 
+    <table class="table table-bordered table-responsive-md">
+        <tbody>
+            <tr>
+                <td>Nom </td>
+                <td>{{etudiant.name}}</td>
+            </tr>
+            <tr>
+                <td>Prenom </td>
+                <td>{{etudiant.firstName}}</td>
+            </tr>
+            <tr>
+                <td>Postnom </td>
+                <td>{{etudiant.lastName}}</td>
+            </tr>
+            <tr>
+                <td>Date de naissance </td>
+                <td>{{etudiant.birthDate}}</td>
+            </tr>
+            <tr>
+                <td>Sexe </td>
+                <td>{{etudiant.sexe}}</td>
+            </tr>
+            <tr>
+                <td>Email </td>
+                <td>{{etudiant.email}}</td>
+            </tr>
+            <tr>
+                <td>Telephone </td>
+                <td>{{etudiant.telephone}}</td>
+            </tr>
+            <tr>
+                <td>Adresse Physique </td>
+                <td>{{etudiant.adressePhysique}}</td>
+            </tr>
+            <tr>
+                <td>Numer de carte electeur </td>
+                <td>{{etudiant.numIdentite}}</td>
+            </tr>
+            <tr>
+                <td>Institution </td>
+                <td>{{etudiant.institution}}</td>
+            </tr>
+            <tr>
+                <td>Niveau</td>
+                <td>{{etudiant.niveau}}</td>
+            </tr>
+            <tr>
+                <td>Matricule </td>
+                <td>{{etudiant.matricule}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <div class="card text-center py-2 badge-info">
+        <h5>Detail sur les paiements de l'etudiant</h5>
+    </div> 
+    <table class="table table-bordered table-responsiv-md">
+        <tbody>
+            <tr>
+                <td>Paiement Minervalle Account </td>
+                <td *ngIf="etudiant.account" class="alert alert-success">Paye!</td>
+                <td *ngIf="!etudiant.account" class="alert alert-warning">Impayer!</td>
+            </tr>
+            <tr>
+                <td>Paiement Minervalle Totalite </td>
+                <td *ngIf="etudiant.minervalles" class="alert alert-success">Paye!</td>
+                <td *ngIf="!etudiant.minervalles" class="alert alert-warning">Impayer!</td>
+            </tr>
+            <tr>
+                <td>Paiement Enrollement de la Mi-Session </td>
+                <td *ngIf="etudiant.enrollementMiSession" class="alert alert-success">Paye!</td>
+                <td *ngIf="!etudiant.enrollementMiSession" class="alert alert-warning">Impayer!</td>
+            </tr>
+            <tr>
+                <td>Paiement Enrollement de la Premiere Session </td>
+                <td *ngIf="etudiant.enrollementPremiereSession" class="alert alert-success">Paye!</td>
+                <td *ngIf="!etudiant.enrollementPremiereSession" class="alert alert-warning">Impayer!</td>
+            </tr>
+            <tr>
+                <td>Paiement Enrollement de la Deuxieme Session </td>
+                <td *ngIf="etudiant.enrollementDeuxiemeSession" class="alert alert-success">Paye!</td>
+                <td *ngIf="!etudiant.enrollementDeuxiemeSession" class="alert alert-warning">Impayer!</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

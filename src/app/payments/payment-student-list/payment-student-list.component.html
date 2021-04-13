@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark text-white text-center">
+    <h2>Gestion du Paiement Etudiants</h2>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xl-6 col-sm-12  col-xs-12">
+        <input type="text" class="form-control" [(ngModel)]="searchItem">
+    </div>
+    <div class="col-md-6 col-xl-1 col-xs-12 col-sm-12 my-2">
+        <i class="fa fa-search"></i>
+    </div>
+    <div class="col-md-6 col-xl-2 col-xs-12 col-sm-12 my-2">
+        <ul>
+            <li>ENR = Enrollement</li>
+            <li>MIN = Minervalles</li>
+        </ul>
+    </div>
+    <div class="col-md-6 col-xl-3 col-xs-12 col-sm-12 my-2">
+        <a href="/payments/student/add"  class="btn btn-outline-primary" ><i class="fa fa-plus"></i>&nbsp;Effectuer un Paiement</a>
+    </div>
+</div>
+<hr>
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+        <h5>Liste des etats de Paiement des etudiants</h5>
+    </div> 
+    <table class="table table-bordered table-responsive-md">
+        <thead class="bg-dark text-white">
+            <th>Nom</th>
+            <th>Matricule</th>
+            <th>MIN/Acompte</th>
+            <th>MIN/Tte</th>
+            <th>ENR/Mi-Session</th>
+            <th>ENR/Session-1</th>
+            <th>ENR/Session-2</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of lists | filter:searchItem | paginate: {itemsPerPage: 10, currentPage: p}">
+                <td>{{item.name+' '+item.lastName+' '+item.firstName}}</td>
+                <td>{{item.matricule}}</td>
+                <td *ngIf="item.account" class="alert alert-success">Payer!</td>
+                <td *ngIf="!item.account" class="alert alert-warning">Impayer!</td>
+                <td *ngIf="item.minervalles" class="alert alert-success">Payer!</td>
+                <td *ngIf="!item.minervalles" class="alert alert-warning">Impayer!</td>
+                <td *ngIf="item.enrollementMiSession" class="alert alert-success">Payer!</td>
+                <td *ngIf="!item.enrollementMiSession" class="alert alert-warning">Impayer!</td>
+                <td *ngIf="item.enrollementPremiereSession" class="alert alert-success">Payer!</td>
+                <td *ngIf="!item.enrollementPremiereSession" class="alert alert-warning">Impayer!</td>
+                <td *ngIf="item.enrollementDeuxiemeSession" class="alert alert-success">Payer!</td>
+                <td *ngIf="!item.enrollementDeuxiemeSession" class="alert alert-warning">Impayer!</td> 
+                <td>
+                    <a href="/payments/student/detail/{{item.id}}"  class="btn btn-outline-success" ><i class="fa fa-eye"></i>&nbsp;Voir</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

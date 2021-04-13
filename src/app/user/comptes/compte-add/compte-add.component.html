@@ -1,0 +1,127 @@
+<app-header></app-header>
+
+<div class="col-12 mb-5 d-flex justify-content-center">
+    <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner> -->
+    <div class="container-fluid" style="width: 50%;">
+        <div class="text-center">
+            <h1>Mbanu</h1>
+        </div>
+        <div class="alert alert-info bg-dark text-white text-center">
+            <h2>Page d'ajout d'un compte utilisateur</h2>
+        </div>
+        <div class="card px-2 py-4">     
+        <form name="form" (ngSubmit) = "f.form.valid && onSubmit()" #f="ngForm">
+            <div class="form-group" >
+                <label for="name" >Nom </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.name" name="name" #name="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && name.invalid">
+                        <div *ngIf="name.errors.required">Entrer le nom de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="firstName" >Prenom </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.firstName" name="firstName" #firstName="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && firstName.invalid">
+                        <div *ngIf="firstName.errors.required">Entrer le prenom de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="lastName" >Post nom </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.lastName" name="lastName" #lastName="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && lastName.invalid">
+                        <div *ngIf="lastName.errors.required">Entrer le post nom de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="username" >Email</label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.email" name="email" #email="ngModel"
+                    type="email"/>
+                    <div *ngIf="f.submitted && email.invalid">
+                        <div *ngIf="email.errors.required">Entrer une adresse email valide</div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="matricule" >Matricule </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.matricule" name="matricule" #matricule="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && matricule.invalid">
+                        <div *ngIf="matricule.errors.required">Entrer le matricule de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="telephone" >Telephone </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.telephone" name="telephone" #telephone="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && telephone.invalid">
+                        <div *ngIf="telephone.errors.required">Entrer le numero de telephone de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="numIdentite" >Numero carte electeur </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.numIdentite" name="numIdentite" #numIdentite="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && numIdentite.invalid">
+                        <div *ngIf="numIdentite.errors.required">Entrer le numero de la carte d'electeur de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="birthDate" >Date de naissance </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.birthDate" name="birthDate" #birthDate="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && birthDate.invalid">
+                        <div *ngIf="birthDate.errors.required">Entrer la date de naissance de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group" >
+                <label for="adressePhysique" >Adresse Physique </label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.adressePhysique" name="adressePhysique" #adressePhysique="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && adressePhysique.invalid">
+                        <div *ngIf="adressePhysique.errors.required">Entrer l'adresse physique de l'etudiant </div>
+                    </div>
+            </div>
+            <div class="form-group">
+                <label for="sexe">Sexe</label>
+                <select  [(ngModel)] ="form.sexe" #sexe="ngModel"  name="sexe"  id="sexe" class="form-control">
+                  <option value="" disabled>-- Choisir un sexe pour cet etudiant --</option>
+                  <option value="{{item}}" *ngFor="let item of gender">{{item}}</option>
+                </select>
+              </div>
+            <div class="form-group">
+                <label for="niveau">Fonction</label>
+                <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                [(ngModel)]="form.fonction" name="fonction" #fonction="ngModel"
+                    type="text"/>
+                    <div *ngIf="f.submitted && fonction.invalid">
+                        <div *ngIf="fonction.errors.required">Entrer la fonction de l'utilisateur </div>
+                    </div>
+              </div>
+              <div class="form-group">
+                <label for="role">Droits d'acces</label>
+                <select  [(ngModel)] ="form.roles" multiple #roles="ngModel"  name="roles"  id="roles" class="form-control">
+                  <option value="" disabled>-- Choisir un/des droits d'acces pour cet utilisateur --</option>
+                  <option value="{{item}}" *ngFor="let item of accesses">{{item}}</option>
+                </select>
+              </div>
+        <div class="form-group">
+            <a href="/comptes/home" class="btn btn-outline-warning"> <i class="fa fa-long-arrow-left"></i> Retour</a>
+            <button type="submit" class="btn btn-outline-primary pull-right">Enregistrer <i class="fa fa-check"></i></button>
+            
+        </div>
+    </form>
+        </div>
+    </div>
+  
+  </div>

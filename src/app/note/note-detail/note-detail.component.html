@@ -1,0 +1,126 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark ">
+    <div class="row text-white text-center">
+        <a href="/notes/home" class="btn btn-default text-white"><i class="fa fa-arrow-left"></i>&nbsp;Retour</a>
+        <h2>Detail des Sessions d'un etudiant</h2>
+    </div>
+</div>
+<hr>
+<div class="card-text"> 
+    <div class="card text-center py-2 badge-info">
+        <h5>Informations detail de l'etudiant</h5>
+    </div>
+    <table class="table table-bordered table-responsive-md">
+        <tbody>
+            <tr>
+                <td>Nom </td>
+                <td>{{etudiant.name}}</td>
+            </tr>
+            <tr>
+                <td>Prenom </td>
+                <td>{{etudiant.firstName}}</td>
+            </tr>
+            <tr>
+                <td>Postnom </td>
+                <td>{{etudiant.lastName}}</td>
+            </tr>
+            <tr>
+                <td>Date de naissance </td>
+                <td>{{etudiant.birthDate}}</td>
+            </tr>
+            <tr>
+                <td>Sexe </td>
+                <td>{{etudiant.sexe}}</td>
+            </tr>
+            <tr>
+                <td>Email </td>
+                <td>{{etudiant.email}}</td>
+            </tr>
+            <tr>
+                <td>Telephone </td>
+                <td>{{etudiant.telephone}}</td>
+            </tr>
+            <tr>
+                <td>Adresse Physique </td>
+                <td>{{etudiant.adressePhysique}}</td>
+            </tr>
+            <tr>
+                <td>Numer de carte electeur </td>
+                <td>{{etudiant.numIdentite}}</td>
+            </tr>
+            <tr>
+                <td>Institution </td>
+                <td>{{etudiant.institution}}</td>
+            </tr>
+            <tr>
+                <td>Niveau</td>
+                <td>{{etudiant.niveau}}</td>
+            </tr>
+            <tr>
+                <td>Matricule </td>
+                <td>{{etudiant.matricule}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+                <h5> <a (click)="reload()" class="btn text-white"><i class="fa fa-refresh"></i>&nbsp;Actualise</a>    Liste des Sessions effectuer par l'etudiant &nbsp;&nbsp;&nbsp;<a href="/notes/etudiants/getNote/{{etudiant.id}}" class="text-white"><i class="fa fa-search"></i>&nbsp;Demander une note</a></h5>
+                    
+    </div> 
+    <div class="card container-fluid p-3">
+        <div class="alert alert-danger text-center" *ngIf="isListNull">
+            <p> <i class="fa fa-info-circle"></i> Aucune Session Active  pour le moment</p>
+        </div>
+        <div *ngIf="!isListNull" class="row">
+            <div class="col-md-6 col-xl-3 col-sm-12 col-xs-12">
+                <div class="card-header">
+                    <i class="fa fa-search"></i>&nbsp;
+                    <span>Rechercher  par niveau</span>
+                </div>
+                <div class="card-body">
+                    <ul *ngFor="let niveau of levels">
+                        <li>
+                            <a (click)="findByUserAndNiveau(niveau)" class="btn">{{niveau}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-9 col-sm-12 col-xs-12">
+                <div class="card-body row"  >
+                    <div class="col-md-6 col-xl-6 col-sm-12 col-xs-12" *ngFor="let item of lists">
+                        <a class="card btn btn-outline-secondary" href="/notes/etudiants/sessions/detail/{{item.id}}" style="border-radius: 10px; ;">
+                            <div class="p-2 m-2">
+                                <div class="card-title text-center">
+                                    <span>Session de :  {{item.name}}</span>
+                                </div>
+                                <div class="card-body text-left">
+                                    <div class="card-text my-1">
+                                        <span> <i class="fa fa-arrow-right"></i>
+                                        Niveau :  {{item.niveau}}</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-arrow-right"></i> Date : {{item.sessionDate}}</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-arrow-right"></i> Total des points : {{item.total}}</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-arrow-right"></i>Pourcentage : {{item.percentage}} %</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-arrow-right"></i> Nombre de cours echoues : {{item.uvLostNumber}}</span>
+                                    </div>
+                                    <div class="card-text my-1">
+                                        <span><i class="fa fa-arrow-right"></i> Decision : {{item.decision}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

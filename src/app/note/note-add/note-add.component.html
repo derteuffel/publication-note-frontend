@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="col-12 mb-5 d-flex justify-content-center">
+    <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner> -->
+    <div class="container-fluid" style="width: 50%;">
+        <div class="text-center">
+            <h1>Mbanu</h1>
+        </div>
+        <div class="alert alert-info bg-dark text-white text-center">
+            <h2>Page d'ajout des notes des etudiants</h2>
+        </div>
+        <div class="card px-2 py-4">     
+        <form [formGroup]="form" (ngSubmit) = "onSubmit()">
+        
+        <div class="form-group">
+            <label for="periode">Session</label>
+            <select    formControlName="periode"  id="periode" class="form-control">
+              <option value="" disabled>-- Choisir la session --</option>
+              <option value="{{item}}" *ngFor="let item of periodes">{{item}}</option>
+            </select>
+          </div>
+        <div class="form-group" >
+            <label for="annee" >Annee academique</label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+             formControlName="annee" 
+                type="text"/>
+                
+        </div>
+
+        <div class="form-group" >
+            <label for="filiere" >Filiere</label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+             formControlName="filiere"
+                type="text"/>
+        </div>
+
+        <div class="form-group">
+            <label for="niveau">Niveau</label>
+            <select    formControlName="niveau"  id="niveau" class="form-control">
+              <option value="" disabled>-- Choisir le niveau --</option>
+              <option value="{{item}}" *ngFor="let item of level">{{item}}</option>
+            </select>
+          </div>
+
+          <div class="form-group" >
+            <label for="file" >Fichier de notes (Au format .xlsx- excel)</label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+            (change)="uploadFile($event)" type="file"/>
+        </div>
+        
+        <div class="form-group">
+            <a href="/notes/home" class="btn btn-outline-warning"> <i class="fa fa-long-arrow-left"></i> Retour</a>
+            <button type="submit" class="btn btn-outline-primary pull-right">Enregistrer <i class="fa fa-check"></i></button>
+            
+        </div>
+    </form>
+        </div>
+    </div>
+  
+  </div>

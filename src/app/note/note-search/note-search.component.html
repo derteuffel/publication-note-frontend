@@ -1,0 +1,178 @@
+<app-header></app-header>
+
+<div class="col-12 mb-5 d-flex justify-content-center" *ngIf="!isSubmitted">
+    <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner> -->
+    <div class="container-fluid" style="width: 50%;">
+        <div class="text-center">
+            <h1>Mbanu</h1>
+        </div>
+        <div class="alert alert-info bg-dark text-white text-center">
+            <h2>Page de recherche des notes d'une session</h2>
+        </div>
+        <div class="card px-2 py-4">     
+        <form [formGroup]="form" (ngSubmit) = "onSubmit()">
+        
+        <div class="form-group">
+            <label for="name">Session</label>
+            <select    formControlName="name"  id="name" class="form-control">
+              <option value="" disabled>-- Choisir la session --</option>
+              <option value="{{item}}" *ngFor="let item of periodes">{{item}}</option>
+            </select>
+          </div>
+        <div class="form-group" >
+            <label for="matricule" >Matricule</label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+             formControlName="matricule" 
+                type="text"/>
+                
+        </div>
+
+        <div class="form-group">
+            <label for="niveau">Niveau</label>
+            <select    formControlName="niveau"  id="niveau" class="form-control">
+              <option value="" disabled>-- Choisir le niveau --</option>
+              <option value="{{item}}" *ngFor="let item of level">{{item}}</option>
+            </select>
+          </div>
+        
+        <div class="form-group">
+            <a href="/notes/home" class="btn btn-outline-warning"> <i class="fa fa-long-arrow-left"></i> Retour</a>
+            <button type="submit" class="btn btn-outline-primary pull-right">Enregistrer <i class="fa fa-check"></i></button>
+            
+        </div>
+    </form>
+        </div>
+    </div>
+  
+  </div>
+
+  <div *ngIf="isSubmitted">
+    <div class="alert alert-info bg-dark ">
+        <div class="row text-white text-center">
+            <a href="/notes/etudiants/detail/{{etudiant.id}}" class="btn btn-default text-white"><i class="fa fa-arrow-left"></i>&nbsp;Retour</a>
+            <h2>Ensemble des notes d'une session d'un etudiant</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="card-text"> 
+        <div class="card text-center py-2 badge-info">
+            <h5>Informations detail de l'etudiant</h5>
+        </div>
+        <table class="table table-bordered table-responsive-md">
+            <tbody>
+                <tr>
+                    <td>Nom </td>
+                    <td>{{etudiant.name}}</td>
+                </tr>
+                <tr>
+                    <td>Prenom </td>
+                    <td>{{etudiant.firstName}}</td>
+                </tr>
+                <tr>
+                    <td>Postnom </td>
+                    <td>{{etudiant.lastName}}</td>
+                </tr>
+                <tr>
+                    <td>Date de naissance </td>
+                    <td>{{etudiant.birthDate}}</td>
+                </tr>
+                <tr>
+                    <td>Sexe </td>
+                    <td>{{etudiant.sexe}}</td>
+                </tr>
+                <tr>
+                    <td>Email </td>
+                    <td>{{etudiant.email}}</td>
+                </tr>
+                <tr>
+                    <td>Telephone </td>
+                    <td>{{etudiant.telephone}}</td>
+                </tr>
+                <tr>
+                    <td>Adresse Physique </td>
+                    <td>{{etudiant.adressePhysique}}</td>
+                </tr>
+                <tr>
+                    <td>Numer de carte electeur </td>
+                    <td>{{etudiant.numIdentite}}</td>
+                </tr>
+                <tr>
+                    <td>Institution </td>
+                    <td>{{etudiant.institution}}</td>
+                </tr>
+                <tr>
+                    <td>Niveau</td>
+                    <td>{{etudiant.niveau}}</td>
+                </tr>
+                <tr>
+                    <td>Matricule </td>
+                    <td>{{etudiant.matricule}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <div class="card text-center py-2 badge-info">
+            <h5>Informations detail de la session</h5>
+        </div>
+        <table class="table table-bordered table-responsive-md">
+            <tbody>
+                <tr>
+                    <td>Periode </td>
+                    <td>{{session.name}}</td>
+                </tr>
+                <tr>
+                    <td>Niveau </td>
+                    <td>{{session.niveau}}</td>
+                </tr>
+                <tr>
+                    <td>Date  </td>
+                    <td>{{session.sessionDate}}</td>
+                </tr>
+                <tr>
+                    <td>Total des points </td>
+                    <td>{{session.total}}</td>
+                </tr>
+                <tr>
+                    <td>Pourcentage </td>
+                    <td>{{session.percentage}} %</td>
+                </tr>
+                <tr>
+                    <td>Nombre de cours echoues </td>
+                    <td>{{session.uvLostNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Decision </td>
+                    <td>{{session.decision}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="card-text">
+        <div class="card text-center py-2 badge-info">
+                    <h5> <a (click)="reload()" class="btn text-white"><i class="fa fa-refresh"></i>&nbsp;Actualise</a>    Liste des notes de la session</h5>
+                        
+        </div> 
+        <div class="card">
+            <div class="alert alert-danger text-center" *ngIf="isListNull">
+                <p> <i class="fa fa-info-circle"></i> Aucune note n'est disponible pour cette session/p>
+            </div>
+            <div *ngIf="!isListNull">
+                <table class="table table-bordered table-responsive-md">
+                    <thead>
+                        <th>Cours</th>
+                        <th>Ponderations</th>
+                        <th>Notes</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of lists">
+                            <td>{{item.matiere}}</td>
+                            <td>{{item.ponderation}}</td>
+                            <td>{{item.note}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>

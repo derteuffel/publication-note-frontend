@@ -1,0 +1,139 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark ">
+    <div class="row text-white text-center">
+        <a href="/payments/home" class="btn btn-default text-white"><i class="fa fa-arrow-left"></i>&nbsp;Retour</a>
+        <h2>Detail des informtions de paiement d'un etudiant</h2>
+        <a href="/payments/student/add" class="btn btn-default text-white"><i class="fa fa-pencil"></i>&nbsp;Modifier</a>
+    </div>
+</div>
+<hr>
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+        <h5>Etat de Paiement de l'etudiant</h5>
+    </div>  
+    <table class=" table table-bordered table-responsive-md">
+        <thead class="alert alert-secondary">
+            <th>Minervalles/Acompte</th>
+            <th>Minervalles/Totalite</th>
+            <th>Enrollement/Mi-Session</th>
+            <th>Enrollement/Premiere-Session</th>
+            <th>Enrollement/Deuxieme-Session</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td *ngIf="etudiant.account" class="alert alert-success">Paye </td>
+                <td *ngIf="!etudiant.account" class="alert alert-warning">Impayee</td>
+                <td *ngIf="etudiant.minervalles" class="alert alert-success">Paye </td>
+                <td *ngIf="!etudiant.minervalles" class="alert alert-warning">Impayee</td>
+                <td *ngIf="etudiant.enrollementMiSession" class="alert alert-success">Paye </td>
+                <td *ngIf="!etudiant.enrollementMiSession" class="alert alert-warning">Impayee</td>
+                <td *ngIf="etudiant.enrollementPremiereSession" class="alert alert-success">Paye </td>
+                <td *ngIf="!etudiant.enrollementPremiereSession" class="alert alert-warning">Impayee</td>
+                <td *ngIf="etudiant.enrollementDeuxiemeSession" class="alert alert-success">Paye </td>
+                <td *ngIf="!etudiant.enrollementDeuxiemeSession" class="alert alert-warning">Impayee</td>
+            </tr>
+        </tbody>
+    </table>
+    <hr>
+    <div class="card text-center py-2 badge-info">
+        <h5>Informations detail de l'etudiant</h5>
+    </div>
+    <table class="table table-bordered table-responsive-md">
+        <tbody>
+            <tr>
+                <td>Nom </td>
+                <td>{{etudiant.name}}</td>
+            </tr>
+            <tr>
+                <td>Prenom </td>
+                <td>{{etudiant.firstName}}</td>
+            </tr>
+            <tr>
+                <td>Postnom </td>
+                <td>{{etudiant.lastName}}</td>
+            </tr>
+            <tr>
+                <td>Date de naissance </td>
+                <td>{{etudiant.birthDate}}</td>
+            </tr>
+            <tr>
+                <td>Sexe </td>
+                <td>{{etudiant.sexe}}</td>
+            </tr>
+            <tr>
+                <td>Email </td>
+                <td>{{etudiant.email}}</td>
+            </tr>
+            <tr>
+                <td>Telephone </td>
+                <td>{{etudiant.telephone}}</td>
+            </tr>
+            <tr>
+                <td>Adresse Physique </td>
+                <td>{{etudiant.adressePhysique}}</td>
+            </tr>
+            <tr>
+                <td>Numer de carte electeur </td>
+                <td>{{etudiant.numIdentite}}</td>
+            </tr>
+            <tr>
+                <td>Institution </td>
+                <td>{{etudiant.institution}}</td>
+            </tr>
+            <tr>
+                <td>Niveau</td>
+                <td>{{etudiant.niveau}}</td>
+            </tr>
+            <tr>
+                <td>Matricule </td>
+                <td>{{etudiant.matricule}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+                <h5>Liste des Paiements effectuer par l'etudiant</h5>
+                <a href="/payments/student/sentCode/{{etudiant.id}}" class="text-white"><i class="fa fa-paper-plane"></i>&nbsp;Renvoyer le code</a>
+    </div> 
+    <div class="card container-fluid p-3">
+        <div class="alert alert-danger text-center" *ngIf="isListNull">
+            <p> <i class="fa fa-info-circle"></i> Aucun paiement effectuer pour le moment</p>
+        </div>
+        <div *ngIf="!isListNull">
+            <div class="card-body row"  >
+                <div class="col-md-6 col-xl-4 col-sm-12 col-xs-12" *ngFor="let item of lists">
+                    <div class="card my-1" style="border-radius: 10px; ;">
+                        <div class="p-2 m-2">
+                            <div class="card-title text-center">
+                                <span>Paiment  {{item.numPaiement}}</span>
+                            </div>
+                            <div class="card-body text-left">
+                                <div class="card-text my-1">
+                                    <span> <i class="fa fa-arrow-right"></i>
+                                        {{item.description}}</span>
+                                </div>
+                                <div class="card-text my-1">
+                                    <span><i class="fa fa-arrow-right"></i> Date {{item.addedDate}}</span>
+                                </div>
+                                <div class="card-text my-1">
+                                    <span><i class="fa fa-arrow-right"></i> {{item.periode}}</span>
+                                </div>
+                                <div class="card-text my-1">
+                                    <span><i class="fa fa-arrow-right"></i> Montant <ul>
+                                        <li>{{item.montantDollar}} USD</li>
+                                        <li>{{item.montantFranc}} CDF</li>
+                                    </ul></span>
+                                </div>
+                                <div class="card-text my-1">
+                                    <span><i class="fa fa-arrow-right"></i> Taux du jour : {{item.tauxDuJour}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
