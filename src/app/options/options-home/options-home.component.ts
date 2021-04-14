@@ -16,6 +16,7 @@ export class OptionsHomeComponent implements OnInit {
   p: number;
   searchItem: string;
   options: any = {};
+  message: string;
 
   fileForm: FormGroup;
 
@@ -34,7 +35,12 @@ export class OptionsHomeComponent implements OnInit {
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      if(!this.validateFile(file.name)){
+        console.log('Selected file format is not supported, try to choose excel file');
+        this.message = 'Le type de fichier choisis n est pas supporter, veuillez choisir un fichier excel';
+      }else{
       this.fileForm.get('file').setValue(file);
+      }
     }
   }
 
@@ -52,6 +58,7 @@ export class OptionsHomeComponent implements OnInit {
   }
 
   onSubmit(){
+    
     const formData = new FormData();
     formData.append('file', this.fileForm.get('file').value);
     this.etudiantService.saveList(formData, this.options.id).subscribe(
@@ -63,6 +70,21 @@ export class OptionsHomeComponent implements OnInit {
         console.log(error);
       }
     );
+    
+  }
+
+  reload(){
+    window.location.reload();
+  }
+
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'xlsx' || ext.toLowerCase() == 'xls') {
+        return true;
+    }
+    else {
+        return false;
+    }
   }
 
   loadAll(id){

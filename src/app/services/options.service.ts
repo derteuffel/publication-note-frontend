@@ -34,4 +34,8 @@ export class OptionsService {
   getOptions(id): Observable<any>{
     return this.http.get(this.optionsUrl+'/'+id, {headers: this.headers});
   }
+
+  getAllOptions(): Observable<any>{
+    return this.http.get(this.optionsUrl, {headers: this.headers});
+  }
 }

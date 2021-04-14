@@ -34,7 +34,7 @@ export class EtudiantService {
   }
 
   saveEtudiant(form, id): Observable<any>{
-    return this.http.post(this.etudiantUrl+'/'+id, form, {headers: this.headers});
+    return this.http.post(this.etudiantUrl+id, form, {headers: this.headers});
   }
 
   getEtudiant(id): Observable<any>{

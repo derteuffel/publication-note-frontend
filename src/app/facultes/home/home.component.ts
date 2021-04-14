@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   searchItem: string;
   isListNull: boolean;
   fileForm: FormGroup;
+  message: string;
 
   constructor(private facultyService: FacultyService, private fb: FormBuilder) {
 
@@ -29,11 +30,18 @@ export class HomeComponent implements OnInit {
   onFileSelect(event) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
+      if(!this.validateFile(file.name)){
+        console.log('Selected file format is not supported, try to choose excel file');
+        this.message = 'Le type de fichier choisis n est pas supporter, veuillez choisir un fichier excel';
+      }else{
       this.fileForm.get('file').setValue(file);
+      }
     }
   }
 
   onSubmit(){
+  
+    
     const formData = new FormData();
     formData.append('file', this.fileForm.get('file').value);
     this.facultyService.saveFaculties(formData).subscribe(
@@ -45,7 +53,18 @@ export class HomeComponent implements OnInit {
         console.log(error);
       }
     );
+  
   }
+
+  validateFile(name: String) {
+    var ext = name.substring(name.lastIndexOf('.') + 1);
+    if (ext.toLowerCase() == 'xlsx' || ext.toLowerCase() == 'xls') {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
   loadAll(){
     this.facultyService.getAll().subscribe(

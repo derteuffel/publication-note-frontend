@@ -21,18 +21,13 @@
           </div>
         <div class="form-group" >
             <label for="annee" >Annee academique</label>
-            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
-             formControlName="annee" 
-                type="text"/>
+                <select    formControlName="annee"  id="niveau" class="form-control">
+                  <option value="" disabled>-- Choisir une annee --</option>
+                  <option value="{{item}}" *ngFor="let item of years">{{item}}</option>
+                </select>
                 
         </div>
 
-        <div class="form-group" >
-            <label for="filiere" >Filiere</label>
-            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
-             formControlName="filiere"
-                type="text"/>
-        </div>
 
         <div class="form-group">
             <label for="niveau">Niveau</label>
@@ -43,6 +38,7 @@
           </div>
 
           <div class="form-group" >
+            <span class="alert alert-danger" *ngIf="message">{{message}}</span>
             <label for="file" >Fichier de notes (Au format .xlsx- excel)</label>
             <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
             (change)="uploadFile($event)" type="file"/>
@@ -50,7 +46,8 @@
         
         <div class="form-group">
             <a href="/notes/home" class="btn btn-outline-warning"> <i class="fa fa-long-arrow-left"></i> Retour</a>
-            <button type="submit" class="btn btn-outline-primary pull-right">Enregistrer <i class="fa fa-check"></i></button>
+            <button type="submit" class="btn btn-outline-primary pull-right" disabled *ngIf="message">Enregistrer <i class="fa fa-check"></i></button>
+            <button type="submit" class="btn btn-outline-primary pull-right"  *ngIf="!message">Enregistrer <i class="fa fa-check"></i></button>
             
         </div>
     </form>

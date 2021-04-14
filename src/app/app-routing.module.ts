@@ -47,6 +47,7 @@ const routes: Routes = [
   {path: 'departements/update/:id', component: DepartementUpdateComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.DOYEN]}},
   {path: 'options/detail/:id', component: OptionsHomeComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.DOYEN]}},
   {path: 'options/etudiants/detail/:id', component: OptionsEtudiantDetailComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.DOYEN]}},
+  {path: 'options/etudiants/add/:id', component: OptionsEtudiantAddComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.DOYEN]}},
   {path: 'options/etudiants/update/:id', component: OptionsEtudiantUpdateComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.DOYEN]}},
   {path: 'notes/home', component: NoteHomeComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.NOTE, Role.ENCODEUR]}},
   {path: 'notes/form/add', component: NoteAddComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.NOTE, Role.ENCODEUR]}},
