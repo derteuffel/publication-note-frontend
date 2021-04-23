@@ -1,0 +1,70 @@
+<app-header></app-header>
+
+<div class="col-12 mb-5 d-flex justify-content-center">
+    <!-- <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" color="#fff" size="large" type="ball-elastic-dots"></ngx-spinner> -->
+    <div class="container-fluid" style="width: 50%;">
+        <div class="text-center">
+            <h1>Mbanu</h1>
+        </div>
+        <div class="alert alert-info bg-dark text-white text-center">
+            <h2>Page d'ajout d'une nouvelle annonce</h2>
+        </div>
+        <div class="card px-2 py-4">     
+        <form [formGroup]="form" (ngSubmit) = "onSubmit()">
+        <div class="form-group" >
+            <label for="title" >Titre de l'annonce</label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+                 formControlName="title" 
+                    type="text"/>
+                    
+        </div>
+
+        <div class="form-group" >
+            <label for="description">Description de votre annonce</label>
+            <textarea formControlName="description" id="description" class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12" rows="5"></textarea>
+                
+        </div>
+        
+        <div class="form-group">
+            <label for="faculty">Faculte concerner (Optionnel, seulement si vous voulez que cette annonce soit vu au niveau de la Faculte choisis)</label>
+            <select    formControlName="facultyId"  id="faculty" class="form-control">
+              <option value="" disabled>-- Choisir la Faculte --</option>
+              <option value="{{item.id}}" *ngFor="let item of faculties">{{item.name}}</option>
+            </select>
+          </div>
+        <div class="form-group" >
+            <label for="departement" >Departement concerner (Optionnel, seulement si vous voulez que cette annonce soit vu au niveau du departement choisis)</label>
+                <select    formControlName="departementId"  id="departement" class="form-control">
+                  <option value="" disabled>-- Choisir un departement --</option>
+                  <option value="{{item.id}}" *ngFor="let item of departements">{{item.name}}</option>
+                </select>
+                
+        </div>
+
+
+        <div class="form-group">
+            <label for="options">Option concerner (Optionnel, seulement si vous voulez que cette annonce soit vu au niveau de l'option choisis)</label>
+            <select    formControlName="optionsId"  id="options" class="form-control">
+              <option value="" disabled>-- Choisir une option --</option>
+              <option value="{{item.id}}" *ngFor="let item of optionses">{{item.name}}</option>
+            </select>
+          </div>
+
+          <div class="form-group" >
+            <span class="alert alert-danger" *ngIf="message">{{message}}</span>
+            <label for="file" >Fichier de notes </label>
+            <input  class="form-control col-sm-12 col-xs-12 col-md-12 col-lg-12 col-xl-12"
+            (change)="uploadFile($event)" type="file"/>
+        </div>
+        
+        <div class="form-group">
+            <a href="/posts/home" class="btn btn-outline-warning"> <i class="fa fa-long-arrow-left"></i> Retour</a>
+            <button type="submit" class="btn btn-outline-primary pull-right" disabled *ngIf="message">Enregistrer <i class="fa fa-check"></i></button>
+            <button type="submit" class="btn btn-outline-primary pull-right"  *ngIf="!message">Enregistrer <i class="fa fa-check"></i></button>
+            
+        </div>
+    </form>
+        </div>
+    </div>
+  
+  </div>

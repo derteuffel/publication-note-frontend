@@ -26,6 +26,8 @@ import { PaymentStudentAddComponent } from './payments/payment-student-add/payme
 import { PaymentStudentDetailComponent } from './payments/payment-student-detail/payment-student-detail.component';
 import { PaymentStudentListComponent } from './payments/payment-student-list/payment-student-list.component';
 import { PaymentStudentSentCodeComponent } from './payments/payment-student-sent-code/payment-student-sent-code.component';
+import { PostAddComponent } from './posts/post-add/post-add.component';
+import { PostHomeComponent } from './posts/post-home/post-home.component';
 import { CompteAddComponent } from './user/comptes/compte-add/compte-add.component';
 import { CompteListComponent } from './user/comptes/compte-list/compte-list.component';
 import { CompteProfileComponent } from './user/comptes/compte-profile/compte-profile.component';
@@ -36,7 +38,7 @@ import { EtudiantUpdateComponent } from './user/etudiants/etudiant-update/etudia
 const routes: Routes = [
   {path:'', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'login/success', component: LoginSuccessComponent},
+  {path: 'login/success', component: LoginSuccessComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT, Role.DOYEN, Role.ENCODEUR, Role.NOTE]}},
   {path: '401', component: UnauthorizedComponent},
   {path: '404', component: NotFoundComponent},
   {path: 'register', component: RegisterComponent},
@@ -63,7 +65,9 @@ const routes: Routes = [
   {path: 'payments/home', component: PaymentStudentListComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT]}},
   {path: 'payments/student/add', component: PaymentStudentAddComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT]}},
   {path: 'payments/student/detail/:id', component: PaymentStudentDetailComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT]}},
-  {path: 'payments/student/sentCode/:id', component: PaymentStudentSentCodeComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT]}}
+  {path: 'payments/student/sentCode/:id', component: PaymentStudentSentCodeComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT]}},
+  {path: 'posts/home', component: PostHomeComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT, Role.DOYEN, Role.ENCODEUR]}},
+  {path: 'posts/form/add', component: PostAddComponent, canActivate: [AuthGuard], data:{roles: [Role.ADMIN, Role.ROOT, Role.PAIEMENT, Role.DOYEN, Role.ENCODEUR]}}
 ];
 
 @NgModule({

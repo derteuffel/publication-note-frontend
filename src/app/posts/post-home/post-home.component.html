@@ -1,0 +1,49 @@
+<app-header></app-header>
+<div class="alert alert-info bg-dark text-white text-center">
+    <h2>Gestion des annonces</h2>
+</div>
+<div class="row">
+    <div class="col-md-6 col-xl-6 col-sm-12  col-xs-12">
+        <input type="text" class="form-control" [(ngModel)]="searchItem">
+    </div>
+    <div class="col-md-6 col-xl-2 col-xs-12 col-sm-12 my-2">
+        <i class="fa fa-search"></i>
+    </div>
+    <div class="col-md-6 col-xl-4 col-sm-12  col-xs-12">
+        <!-- <form [formGroup] = "fileForm" (ngSubmit)="onSubmit()" >
+            <div>
+                <label for="file">Ajouter a partir d'un fichier excel</label>
+              <input id="file" type="file" name="file" (change)="onFileSelect($event)" >
+            </div>
+            <button type="submit" class="btn btn-outline-secondary my-1">Charger</button>
+          </form> -->
+    <a href="/posts/form/add" class="btn btn-outline-primary"> <i class="fa fa-plus"></i>&nbsp;Ajouter une annonce</a>
+  </div>
+</div>
+<hr>
+<div class="card-text">
+    <div class="card text-center py-2 badge-info">
+        <h5>Liste des annonces</h5>
+    </div> 
+    <table class="table table-bordered table-responsive-md">
+        <thead class="bg-dark text-white">
+            <th>Titre</th>
+            <th>Date d'ajout</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of lists | filter:searchItem | paginate: {itemsPerPage: 10, currentPage: p}">
+                <td>{{item.title}}</td>
+                <td>{{item.addedDate}}</td>
+                <td>{{item.description}}</td>
+                <td>
+                    <a href="/posts/detail/{{item.id}}"  class="btn btn-outline-success" ><i class="fa fa-eye"></i> Voir</a>
+                    <a href="/posts/update/{{item.id}}"  class="btn btn-outline-primary" ><i class="fa fa-pencil"></i> Modifier</a>
+                    <a (click)="delete(item.id)"  class="btn btn-outline-danger" ><i class="fa fa-trash"></i> Supprimer</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

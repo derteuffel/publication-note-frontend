@@ -40,6 +40,8 @@ import { OptionsEtudiantUpdateComponent } from './options/options-etudiant-updat
 import { LoginSuccessComponent } from './auth/login-success/login-success.component';
 import { UnauthorizedComponent } from './auth/unauthorized/unauthorized.component';
 import { NotFoundComponent } from './auth/not-found/not-found.component';
+import { PostHomeComponent } from './posts/post-home/post-home.component';
+import { PostAddComponent } from './posts/post-add/post-add.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { NotFoundComponent } from './auth/not-found/not-found.component';
     LoginSuccessComponent,
     UnauthorizedComponent,
     NotFoundComponent,
+    PostHomeComponent,
+    PostAddComponent,
   ],
   imports: [
     BrowserModule,

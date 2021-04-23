@@ -51,4 +51,8 @@ export class DepartementService {
   getOneOptions(id): Observable<any>{
     return this.http.get(this.departementUrl+'/get/options/'+id, {headers: this.headers});
   }
+
+  getAll(): Observable<any>{
+    return this.http.get(this.departementUrl, {headers: this.headers});
+  }
 }
